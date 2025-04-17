@@ -8,7 +8,6 @@ import {
   trendData 
 } from '@/data/mockData';
 import { StudentSelector } from '@/components/StudentSelector';
-import { AttendanceMetrics } from '@/components/AttendanceMetrics';
 import { AttendanceTrend } from '@/components/AttendanceTrend';
 import { RiskIndicator } from '@/components/RiskIndicator';
 import { AttendanceHistory } from '@/components/AttendanceHistory';

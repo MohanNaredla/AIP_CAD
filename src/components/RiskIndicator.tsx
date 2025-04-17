@@ -24,25 +24,25 @@ export const RiskIndicator: React.FC<RiskIndicatorProps> = ({ risk, compact = fa
 
   if (compact) {
     return (
-      <div className="flex items-center">
+      <div className="flex items-center space-x-3 p-2 bg-muted/30 rounded-lg">
         {getIcon()}
-        <div className="ml-2">
-          <h3 className="text-lg font-semibold" style={{ color: risk.color }}>
+        <div>
+          <h3 className="text-sm font-semibold" style={{ color: risk.color }}>
             {risk.level} Risk
           </h3>
-          <p className="text-xs text-muted-foreground">{risk.description}</p>
+          <p className="text-xs text-muted-foreground line-clamp-2">{risk.description}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center justify-center p-4 bg-muted/30 rounded-lg">
       {getIcon()}
-      <h3 className="mt-3 text-xl font-semibold" style={{ color: risk.color }}>
+      <h3 className="mt-3 text-lg font-semibold" style={{ color: risk.color }}>
         {risk.level} Risk
       </h3>
-      <p className="mt-2 text-center text-muted-foreground">{risk.description}</p>
+      <p className="mt-2 text-center text-sm text-muted-foreground">{risk.description}</p>
     </div>
   );
 };

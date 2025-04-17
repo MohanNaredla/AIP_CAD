@@ -28,9 +28,8 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
             <TableRow>
               <TableHead>Year</TableHead>
               <TableHead>Rate</TableHead>
-              <TableHead>Absences</TableHead>
-              <TableHead>Excused</TableHead>
-              <TableHead>Total Days</TableHead>
+              <TableHead className="text-center">Absences</TableHead>
+              <TableHead className="text-center">Total Days Enrolled</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -59,9 +58,8 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
                     />
                   </div>
                 </TableCell>
-                <TableCell>{year.absences}</TableCell>
-                <TableCell>{year.excused}</TableCell>
-                <TableCell>{year.total}</TableCell>
+                <TableCell className="text-center">{year.absences}</TableCell>
+                <TableCell className="text-center">{year.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>

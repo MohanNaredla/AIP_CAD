@@ -40,15 +40,15 @@ export const AttendanceTrend: React.FC<AttendanceTrendProps> = ({ data }) => {
                 type="monotone"
                 dataKey="value"
                 name="Attendance Rate"
-                stroke="#4CAF50"
+                stroke={(dataPoint) => dataPoint.isPredicted ? "#FFB547" : "#4CAF50"}
                 strokeWidth={2}
                 dot={{
                   stroke: 'var(--background)',
                   strokeWidth: 2,
-                  fill: '#4CAF50',
+                  fill: (dataPoint) => dataPoint.isPredicted ? "#FFB547" : "#4CAF50",
                   r: 5
                 }}
-                activeDot={{ r: 8, fill: '#4CAF50' }}
+                activeDot={{ r: 8, fill: (dataPoint) => dataPoint.isPredicted ? "#FFB547" : "#4CAF50" }}
               />
             </LineChart>
           </ResponsiveContainer>
