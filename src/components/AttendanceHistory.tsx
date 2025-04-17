@@ -7,7 +7,7 @@ import { Progress } from '@/components/ui/progress';
 
 interface AttendanceHistoryProps {
   history: AttendanceData[];
-  predicted: AttendanceData & { isPredicted?: boolean };
+  predicted: AttendanceData;
 }
 
 export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, predicted }) => {
@@ -29,6 +29,7 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
               <TableHead>Year</TableHead>
               <TableHead>Rate</TableHead>
               <TableHead className="text-center">Absences</TableHead>
+              <TableHead className="text-center">Excused</TableHead>
               <TableHead className="text-center">Total Days Enrolled</TableHead>
             </TableRow>
           </TableHeader>
@@ -59,6 +60,7 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
                   </div>
                 </TableCell>
                 <TableCell className="text-center">{year.absences}</TableCell>
+                <TableCell className="text-center">{year.excused}</TableCell>
                 <TableCell className="text-center">{year.total}</TableCell>
               </TableRow>
             ))}
