@@ -7,11 +7,14 @@ import { Progress } from '@/components/ui/progress';
 
 interface AttendanceHistoryProps {
   history: AttendanceData[];
-  predicted: AttendanceData;
+  predicted: AttendanceData & { isPredicted?: boolean };
 }
 
 export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, predicted }) => {
-  const allData = [...history, { ...predicted, isPredicted: true }];
+  const allData = [
+    ...history,
+    { ...predicted, isPredicted: true },
+  ];
 
   return (
     <Card>
@@ -26,8 +29,8 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
               <TableHead>Year</TableHead>
               <TableHead>Rate</TableHead>
               <TableHead>Absences</TableHead>
-              <TableHead>Lates</TableHead>
               <TableHead>Excused</TableHead>
+              <TableHead>Total Days</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -44,22 +47,21 @@ export const AttendanceHistory: React.FC<AttendanceHistoryProps> = ({ history, p
                     </div>
                     <Progress
                       value={year.attendanceRate}
-                      className="h-2"
-                      indicatorClassName={`${
+                      className={`h-2 ${
                         year.attendanceRate >= 95
-                          ? 'bg-green-500'
+                          ? 'bg-muted text-green-500'
                           : year.attendanceRate >= 90
-                          ? 'bg-green-400'
+                          ? 'bg-muted text-green-400'
                           : year.attendanceRate >= 85
-                          ? 'bg-amber-400'
-                          : 'bg-red-400'
+                          ? 'bg-muted text-amber-400'
+                          : 'bg-muted text-red-400'
                       }`}
                     />
                   </div>
                 </TableCell>
                 <TableCell>{year.absences}</TableCell>
-                <TableCell>{year.lates}</TableCell>
                 <TableCell>{year.excused}</TableCell>
+                <TableCell>{year.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>

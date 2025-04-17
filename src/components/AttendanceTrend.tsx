@@ -45,7 +45,7 @@ export const AttendanceTrend: React.FC<AttendanceTrendProps> = ({ data }) => {
                 dot={{
                   stroke: 'var(--background)',
                   strokeWidth: 2,
-                  fill: (entry) => (entry.isPredicted ? '#FFB547' : '#4CAF50'),
+                  fill: '#4CAF50',
                   r: 5
                 }}
                 activeDot={{ r: 8, fill: '#4CAF50' }}

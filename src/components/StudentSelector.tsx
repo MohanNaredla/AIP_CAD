@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from 'react';
+import { ChevronDown, User } from 'lucide-react';
 import { students, Student } from '@/data/mockData';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface StudentSelectorProps {
   selectedStudent: Student;
@@ -21,7 +22,11 @@ export const StudentSelector: React.FC<StudentSelectorProps> = ({
 }) => {
   return (
     <div className="flex items-center gap-3 mb-6">
-      <div className="text-4xl">{selectedStudent.avatar}</div>
+      <Avatar className="h-12 w-12">
+        <AvatarFallback className="bg-primary/10 text-primary">
+          <User size={20} />
+        </AvatarFallback>
+      </Avatar>
       <div>
         <h2 className="text-2xl font-semibold">{selectedStudent.name}</h2>
         <p className="text-muted-foreground">{selectedStudent.grade}</p>
@@ -39,7 +44,6 @@ export const StudentSelector: React.FC<StudentSelectorProps> = ({
               onClick={() => onSelectStudent(student)}
               className="flex items-center gap-2"
             >
-              <span className="text-xl">{student.avatar}</span>
               <span>{student.name}</span>
             </DropdownMenuItem>
           ))}

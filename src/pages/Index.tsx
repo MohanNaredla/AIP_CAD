@@ -12,6 +12,8 @@ import { AttendanceMetrics } from '@/components/AttendanceMetrics';
 import { AttendanceTrend } from '@/components/AttendanceTrend';
 import { RiskIndicator } from '@/components/RiskIndicator';
 import { AttendanceHistory } from '@/components/AttendanceHistory';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { CalendarCheck2 } from 'lucide-react';
 
 const Index = () => {
   const [selectedStudent, setSelectedStudent] = useState(students[0]);
@@ -34,18 +36,55 @@ const Index = () => {
           onSelectStudent={setSelectedStudent} 
         />
         
-        <AttendanceMetrics 
-          currentYear={currentYear} 
-          previousYear={previousYear} 
-        />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Attendance Rate</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-baseline justify-between">
+                <div className="flex items-center">
+                  <CalendarCheck2 className="h-5 w-5 text-green-500 mr-2" />
+                  <div className="text-2xl font-bold">{currentYear.attendanceRate}%</div>
+                </div>
+                <div className={`text-sm ${currentYear.attendanceRate - previousYear.attendanceRate >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {currentYear.attendanceRate - previousYear.attendanceRate >= 0 ? '↑' : '↓'} {Math.abs(currentYear.attendanceRate - previousYear.attendanceRate)}%
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Compared to {previousYear.year}</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Risk Assessment</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <RiskIndicator risk={riskAssessment} compact={true} />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-muted-foreground">Predicted Attendance (2024)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-baseline justify-between">
+                <div className="flex items-center">
+                  <CalendarCheck2 className="h-5 w-5 text-amber-500 mr-2" />
+                  <div className="text-2xl font-bold">{predictedAttendance.attendanceRate}%</div>
+                </div>
+                <div className={`text-sm ${predictedAttendance.attendanceRate - currentYear.attendanceRate >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+                  {predictedAttendance.attendanceRate - currentYear.attendanceRate >= 0 ? '↑' : '↓'} {Math.abs(predictedAttendance.attendanceRate - currentYear.attendanceRate)}%
+                </div>
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">Compared to {currentYear.year}</p>
+            </CardContent>
+          </Card>
+        </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-          <div className="md:col-span-2">
-            <AttendanceTrend data={trendData} />
-          </div>
-          <div>
-            <RiskIndicator risk={riskAssessment} />
-          </div>
+        <div className="mb-6">
+          <AttendanceTrend data={trendData} />
         </div>
         
         <AttendanceHistory 
