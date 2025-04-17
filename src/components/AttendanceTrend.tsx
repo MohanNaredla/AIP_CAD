@@ -40,7 +40,7 @@ export const AttendanceTrend: React.FC<AttendanceTrendProps> = ({ data }) => {
                 type="monotone"
                 dataKey="value"
                 name="Attendance Rate"
-                stroke={(dataPoint) => dataPoint.isPredicted ? "#4CAF50" : "#4CAF50"}
+                stroke="#4CAF50"
                 strokeWidth={2}
                 dot={{
                   stroke: 'var(--background)',
