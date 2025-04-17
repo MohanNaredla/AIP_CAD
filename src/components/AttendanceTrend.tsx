@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ReferenceLine } from 'recharts';
 
 interface TrendDataPoint {
   year: string;
@@ -34,7 +34,6 @@ export const AttendanceTrend: React.FC<AttendanceTrendProps> = ({ data }) => {
                 formatter={(value) => [`${value}%`, 'Attendance Rate']}
                 labelFormatter={(label) => `Year: ${label}`}
               />
-              <Legend />
               <ReferenceLine y={90} stroke="#FF8A65" strokeDasharray="3 3" />
               <Line
                 type="monotone"
@@ -52,20 +51,6 @@ export const AttendanceTrend: React.FC<AttendanceTrendProps> = ({ data }) => {
               />
             </LineChart>
           </ResponsiveContainer>
-        </div>
-        <div className="flex mt-2 text-xs text-muted-foreground justify-between">
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-full bg-[#4CAF50]"></div>
-            <span>Historical Data</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 rounded-full bg-[#FFB547]"></div>
-            <span>Predicted Value</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <div className="w-3 h-3 border-t border-[#FF8A65] border-dashed"></div>
-            <span>90% Threshold</span>
-          </div>
         </div>
       </CardContent>
     </Card>
