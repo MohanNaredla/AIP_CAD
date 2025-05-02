@@ -4,15 +4,17 @@ import { ShieldCheck, AlertTriangle, ShieldAlert } from "lucide-react";
 
 interface Props {
   risk: RiskCategory;
+  probability?: number | null;
   compact?: boolean;
 }
 
-export const RiskIndicator: React.FC<Props> = ({ risk, compact = false }) => {
+
+export const RiskIndicator: React.FC<Props> = ({ risk, compact = false, probability=null }) => {
   const icon = {
     Low: <ShieldCheck className="h-6 w-6 text-green-500" />,
     Medium: <AlertTriangle className="h-6 w-6 text-amber-500" />,
     High: <ShieldAlert className="h-6 w-6 text-red-500" />,
-  }[risk.level];
+  }[risk.level];  
 
   if (compact) {
     return (
@@ -25,6 +27,11 @@ export const RiskIndicator: React.FC<Props> = ({ risk, compact = false }) => {
           <p className="text-xs text-muted-foreground line-clamp-2">
             {risk.description}
           </p>
+          {probability !== null && (
+            <p className="text-xs mt-1 text-muted-foreground">
+              Probability (2025): <strong>{(probability * 100).toFixed(2)}%</strong>
+            </p>
+          )}
         </div>
       </div>
     );
@@ -39,6 +46,11 @@ export const RiskIndicator: React.FC<Props> = ({ risk, compact = false }) => {
       <p className="mt-2 text-center text-sm text-muted-foreground">
         {risk.description}
       </p>
+      {probability !== null && (
+        <p className="mt-2 text-sm text-muted-foreground">
+          Probability (2025): <strong>{(probability * 100).toFixed(2)}%</strong>
+        </p>
+      )}
     </div>
   );
 };

@@ -46,7 +46,7 @@ export const AttendanceHistory: React.FC<Props> = ({ history, predicted }) => {
             {rows.map((r) => (
               <TableRow
                 key={r.year}
-                className={r.isPredicted ? "bg-amber-50/20" : ""}
+                className={r.isPredicted ? "bg-amber-300/30" : ""}
               >
                 <TableCell>
                   {r.year}{" "}

@@ -28,6 +28,7 @@ interface Props {
   data: Point[];
 }
 
+
 export const AttendanceTrend: React.FC<Props> = ({ data }) => (
   <Card className="mb-6">
     <CardHeader>
@@ -56,6 +57,13 @@ export const AttendanceTrend: React.FC<Props> = ({ data }) => (
               name="Attendance"
               stroke="#4CAF50"
               strokeWidth={2}
+              label={{
+                formatter: (value: number) => `${value}%`,
+                position: "top",
+                fontSize: 12,
+                fill: "#4CAF50",
+              }}
+              
               dot={{
                 r: 5,
                 stroke: "var(--background)",
